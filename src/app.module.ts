@@ -19,7 +19,16 @@ TypeOrmModule.forRoot({
     password:process.env.POSTGRES_PASSWORD,
     database:process.env.POSTGRES_DATABASE,
     entities:[__dirname + '/**/*.entity{.ts,.js}'],
-    synchronize:true
+    synchronize:true,
+    ssl: process.env.POSTGRES_SSL === "true",
+    extra: {
+      ssl:
+        process.env.POSTGRES_SSL === "true"
+          ? {
+              rejectUnauthorized: false,
+            }
+          : null,
+    },
   }), CatsModule, BreedsModule, UsersModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
