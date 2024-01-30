@@ -1,3 +1,4 @@
+console.log(process.env.SECRET_JWT )
 export const jwtConstants= {
-    secret: "no ultilizar la misma en prodccion"
+    secret: process.env.SECRET_JWT 
 }
